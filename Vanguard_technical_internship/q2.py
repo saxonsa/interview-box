@@ -1,14 +1,15 @@
 
 def get_dict_key(dic, value):
+    dic_copy = dic.copy()
     targets = []
     while True:
-        keys = list(dic.keys())
-        values = list(dic.values())
+        keys = list(dic_copy.keys())
+        values = list(dic_copy.values())
         try:
             idx = values.index(value)
             target = keys[idx]
             targets.append(target)
-            del dic[target]
+            del dic_copy[target]
         except ValueError:
             return targets
 
@@ -82,7 +83,7 @@ def manhattan(a, b):
             current_position = origin
     
     intersaction_routes = get_dict_key(map_states, states['INTERSACTION'])
-    
+
     min_value = 0
     for item in intersaction_routes:
         sum = abs(item[0]) + abs(item[1])
